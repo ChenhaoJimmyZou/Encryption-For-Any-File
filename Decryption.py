@@ -11,12 +11,12 @@ def decryption(key, fileName):
 
         decryptor = AES.new(key, AES.MODE_CBC, IV)
 
-        with open(outPutFile, 'wb') as outputFile:
+        with open(outPutFile, 'wb') as oFile:
             while True:
                 text = inputFile.read(textSize)
 
                 if len(text) == 0:
                     break
 
-                outputFile.write(decryptor.decrypt(text))
-            outputFile.truncate(fileSize)
+                oFile.write(decryptor.decrypt(text))
+            oFile.truncate(fileSize)

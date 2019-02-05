@@ -11,9 +11,9 @@ def encryption(key, fileName):
     encryptor = AES.new(key, AES.MODE_CBC, IV)
 
     with open(fileName, 'rb') as inputFile:
-        with open(outPutFile, 'wb') as outputFile:
-            outputFile.write(filesize.encode('utf-8'))
-            outputFile.write(IV)
+        with open(outPutFile, 'wb') as oFile:
+            oFile.write(filesize.encode('utf-8'))
+            oFile.write(IV)
 
             while True:
                 text = inputFile.read(textSize)
@@ -22,4 +22,4 @@ def encryption(key, fileName):
                     break
                 elif len(text) % 16 != 0:
                     text += b' ' * (16 - (len(text) % 16))
-                outputFile.write(encryptor.encrypt(text))
+                oFile.write(encryptor.encrypt(text))
